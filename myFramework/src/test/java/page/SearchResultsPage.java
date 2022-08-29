@@ -33,8 +33,4 @@ public class SearchResultsPage extends AbstractPage{
                 .map(webElement -> webElement.getText())
                 .collect(Collectors.toList());
     }
-
-    public boolean hasSearchResults(){
-        return !searchResults.isEmpty();
-    }
 }

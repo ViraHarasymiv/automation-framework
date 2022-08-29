@@ -24,16 +24,4 @@ public class searchFieldTests extends CommonConditions {
                 .firstTwoWordsOfSearchItem(testUser);
         assertThat(listOfFirstTwoWordsOfSearchItems, everyItem(startsWith(testUser.getSearchItem().substring(0, 1))));
     }
-
-    @Test
-    public void checkThatResultsAreNotEmpty() {
-        User testUser = UserCreator.withCredentialsFromProperty();
-        boolean testResults = new GoogleCloudPage(driver)
-                .openPage()
-                .clickOnSearchButton()
-                .typeSearchItem(testUser)
-                .openPage()
-                .hasSearchResults();
-        Assert.assertTrue(testResults);
-    }
 }
