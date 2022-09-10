@@ -19,7 +19,10 @@ public class SearchResultsPage extends AbstractPage{
     }
 
     @FindBy(xpath = "//div[@class='gs-title']//a[@class='gs-title']//b[text()='Google Cloud']")
-    List<WebElement>searchResults;
+    private List<WebElement>searchResults;
+
+    @FindBy(xpath = "//div[@class='gs-title']//a[@class='gs-title']//b[text()='Google Cloud Pricing Calculator']")
+    private WebElement googleCloudPricingCalculator;
 
     @Override
     public SearchResultsPage openPage() {
@@ -27,10 +30,15 @@ public class SearchResultsPage extends AbstractPage{
         return this;
     }
 
-    public List<String> firstTwoWordsOfSearchItem(User user){
+    public List<String> getSearchInformation(User user){
         return searchResults
                 .stream()
                 .map(webElement -> webElement.getText())
                 .collect(Collectors.toList());
+    }
+
+    public GoogleCloudCalculatorPage selectGoogleCloudPricingCalculator(){
+        googleCloudPricingCalculator.click();
+        return new GoogleCloudCalculatorPage(driver);
     }
 }
